@@ -1,0 +1,28 @@
+.floatRight{
+    float: right;
+}
+
+.emailBoxBorder {
+    border-style: solid;
+    border-color: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    margin: 5px 5px 5px 0px;
+    padding: 5px;
+}
+
+.marginPadding10 {
+    margin: 10px 10px 10px 0px;
+    padding: 10px;
+}
+
+div.emails { cursor: pointer; }
+
+.colStyle{
+    border-color: black;
+    border-style: solid;
+}
+
+.active{
+    background-color: #04AA6D;
+    color: white;
+}

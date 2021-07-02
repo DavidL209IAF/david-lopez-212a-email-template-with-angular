@@ -1,0 +1,57 @@
+<div class="row vh-100">
+<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 colStyle" >
+<button type="button" class="btn btn-primary btns floatRight marginPadding10">Search</button>
+<input type="search" id="searchField" class="form-control w-75 marginPadding10" placeholder="Search">
+
+<div class="emailBoxBorder emails" [ngClass]="{active: currentEmailPK === email.emailPK}" *ngFor="let email of emails | filterEmails:currentMenuItemClicked; let i = index" (click)="emailClicked(email.emailPK)">
+    <p class="floatRight">{{ email.emailDateTime }}</p>
+    <h3>{{ email.emailSubject}}</h3>
+    <p>{{ email.emailContentPreview }}</p> 
+</div>
+</div>
+
+
+<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 colStyle">
+    <!--If email was clicked on-->
+    <ng-container *ngIf="currentEmailPK > -1 && emailBeingAdded === false">
+        <button class="btn btn-danger floatRight marginPadding10" (click)="closeEmail()">Close</button>
+        <h2 class="marginPadding10">{{ emailDateTime }}</h2>
+        <!--To and from field-->
+            <input class="form-control marginPadding10 pText" type="text" [placeholder]="fromField"
+            aria-label="Disabled input" disabled>
+            <input class="form-control marginPadding10 pText" type="text" [placeholder]="toField"
+            aria-label="Disabled input" disabled>
+        
+            <!--Main Email Heading-->
+            <button type="button" class="btn btn-outline-secondary bi bi-trash floatRight marginPadding10" (click)="removeEmail()"></button>
+            <button type="button" class="btn btn-outline-secondary bi bi-reply floatRight marginPadding10"></button>
+            <button type="button" class="btn btn-outline-secondary bi bi-reply-all floatRight marginPadding10"></button>
+            <button type="button" class="btn btn-outline-secondary bi bi-three-dots floatRight marginPadding10"></button>
+            <h2 class='marginPadding10'>{{ emailSubject }}</h2>
+        
+            <!--Email body-->
+            <p class= 'marginPadding10 pText'>{{ emailContent }}
+        </p>
+            <!--Reply Box-->
+            <textarea class="form-control marginPadding10" rows="4"></textarea>
+            <button type="button" class="btn btn-primary btns floatRight">Reply</button>
+            <input class="form-control form-control-sm w-75" type="file">
+            </ng-container>
+            <!--If email was clicked on-->
+
+
+            <!--if compose email is clicked-->
+            <ng-container *ngIf="emailBeingAdded === true">
+            <!--To and from field-->
+            <button class="btn btn-danger floatRight marginPadding10" (click)="cancelEmailAdd()">Cancel</button>
+            <h2 class="marginPadding10">New Email</h2>
+            <input class="form-control marginPadding10 pText" type="text" [placeholder]="'From: ' + addFromField"
+            aria-label="Disabled input" disabled>
+            <input class="form-control marginPadding10 pText" type="text" [placeholder]="'To: ' + 'fakeemail@fake.com'" [(ngModel)]="addToField">
+            <input class="form-control marginPadding10 pText" type="text" [placeholder]="'Subject: ' + 'Greetings!'" [(ngModel)]="addEmailSubject">
+            <textarea class="form-control marginPadding10" rows="4" [(ngModel)]="addEmailContent"></textarea>
+            <button type="button" class="btn btn-primary btns floatRight" (click)="sendEmail()">Send</button>
+            <input class="form-control form-control-sm w-75" type="file">
+            </ng-container>
+            <!--if compose email is clicked-->
+</div>
